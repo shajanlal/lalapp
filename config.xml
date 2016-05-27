@@ -1,5 +1,5 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.pim.app" version="1.0.0">
-  <name>Valmont Captiv</name>
+  <name>Valmont Captiv Demo</name>
   <description>Cost Computation</description>
   <author href="http://www.itti.com" email="shajanlal@gmail.com">ITTI Team</author>
   <content src="index.html"/>
