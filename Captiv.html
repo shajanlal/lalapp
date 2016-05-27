@@ -5,7 +5,23 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en-gb" class="no-js">
 <!--<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+<script type="text/javascript">
+	  var app = angular.module('booksInventoryApp', []);
+
+		app.controller('booksCtrl', function($scope, $http) {
+
+		  $http.get("https://whispering-woodland-9020.herokuapp.com/getAllBooks")
+			.then(function(response) {
+			  $scope.data = response.data;
+			});
+		});
+		</script>
+
 <head>
+
+
+
 <meta charset="utf-8">
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
@@ -34,14 +50,7 @@
 <!-- Font Awesome -->
 <link href="css/font-awesome.min.css" rel="stylesheet">
  <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <base href="http://demos.telerik.com/kendo-ui/dropdownlist/cascadingdropdownlist">
-    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
-    <title></title>
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.504/styles/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.504/styles/kendo.material.min.css" />
-
-    <script src="//kendo.cdn.telerik.com/2016.2.504/js/jquery.min.js"></script>
-    <script src="//kendo.cdn.telerik.com/2016.2.504/js/kendo.all.min.js"></script>
+ 
  <script >
 
 function initPage() {
@@ -118,6 +127,8 @@ alert("an error has occured..!" + request.statusText + error);
 </head>
 
 <body onload="onLoad();">
+
+
 <header class="header  addBg" >
   <div class="container">
     <nav class="navbar navbar-inverse" role="navigation">
@@ -290,6 +301,11 @@ alert("an error has occured..!" + request.statusText + error);
 		</div>
       </div>
     </div>
+	
+	
+	
+	
+		
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -297,37 +313,52 @@ alert("an error has occured..!" + request.statusText + error);
         </h4>
       </div>
       <div id="collapse2" class="panel-collapse collapse in">
-        <div class="panel-body">
-		<!-- -----------------------------------Fouzan---------------------------------------->
-		<div class="demo-section k-content">
-		
+	    <div class="panel-body">
 		<!-------col 1-------->
-        <div class="col-sm-6">
+		
+		
+	  
+	 
+		
+
+        <div class="col-sm-6" ng-app="booksInventoryApp">
           <div class="form-group">
             <label for="name">Product Type</label>
-			<input id="categories" class="form-control"/>
+			<select name="Pro-type" class="form-control" ng-controller="booksCtrl">
+              <option value="0">Please Select</option>
+              <option value="{{book.name}}" ng-repeat="book in data.books">{{book.name}}</option>
+			</select>
+         
           </div>
 	    </div>
+		
+		
+		
+		
+		
+		
 		
 		<div class="col-sm-6">
           <div class="form-group">
            
             <label for="name">Type of pole</label>
-			<input id="products" disabled="disabled" class="form-control"/>        
+			<select name="Pro-type" class="form-control">
+              <option value="Octagonal">Octagonal</option>
+              <option value="Non Octagonal">Octagonal</option>
+			</select>
+        
           </div>
         </div>
-
-        <div class="col-sm-6">
+		<div class="col-sm-6">
           <div class="form-group">
             <label for="name">Height of pole</label>
-			<input id="orders" disabled="disabled" class="form-control"/>         
+			<select name="Pro-type" class="form-control">
+              <option value="Standard">Standard</option>
+              <option value="Non Standard">Non Standard</option>
+			</select>
+         
           </div>
-	    </div>        
-		</div>
-			
-		<!------------------------------pppppppppppppppppppppppppppppp-------------------------->	
-			
-				
+		   </div>
 		<div class="col-sm-6">
           <div class="form-group">
            
@@ -612,69 +643,3 @@ alert("an error has occured..!" + request.statusText + error);
 <script src="js/owl-carousel/owl.carousel.js"></script>
 </body>
 </html>
-
-
-
-            <style>
-                .k-readonly
-                {
-                    color: gray;
-                }
-            </style>
-
-            <script>
-                $(document).ready(function() {
-                    var categories = $("#categories").kendoDropDownList({
-                        optionLabel: "Select category...",
-                        dataTextField: "CategoryName",
-                        dataValueField: "CategoryID",
-                        dataSource: {
-                            type: "odata",
-                            serverFiltering: true,
-                            transport: {
-                                read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
-								//read: "http://192.168.3.36:8095/Service.svc/GetProductType"
-                            }
-                        }
-                    }).data("kendoDropDownList");
-
-                    var products = $("#products").kendoDropDownList({
-                        autoBind: false,
-                        cascadeFrom: "categories",
-                        optionLabel: "Select product...",
-                        dataTextField: "ProductName",
-                        dataValueField: "ProductID",
-                        dataSource: {
-                            type: "odata",
-                            serverFiltering: true,
-                            transport: {
-                                read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
-                            }
-                        }
-                    }).data("kendoDropDownList");
-
-                    var orders = $("#orders").kendoDropDownList({
-                        autoBind: false,
-                        cascadeFrom: "products",
-                        optionLabel: "Select order...",
-                        dataTextField: "Order.ShipCity",
-                        dataValueField: "OrderID",
-                        dataSource: {
-                            type: "odata",
-                            serverFiltering: true,
-                            transport: {
-                                read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Order_Details?$expand=Order"
-                            }
-                        }
-                    }).data("kendoDropDownList");
-
-                    $("#get").click(function() {
-                        var categoryInfo = "\nCategory: { id: " + categories.value() + ", name: " + categories.text() + " }",
-                            productInfo = "\nProduct: { id: " + products.value() + ", name: " + products.text() + " }",
-                            orderInfo = "\nOrder: { id: " + orders.value() + ", name: " + orders.text() + " }";
-
-                        alert("Order details:\n" + categoryInfo + productInfo + orderInfo);
-                    });
-                });
-            </script>
-        
