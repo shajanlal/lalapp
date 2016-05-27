@@ -325,7 +325,7 @@ alert("an error has occured..!" + request.statusText + error);
           <div class="form-group">
             <label for="name">Product Type</label>
 			<select name="Pro-type" class="form-control" ng-controller="booksCtrl">
-              <option value="0">Please Select</option>
+              <option value="0">Please Select-(Data from Web services)</option>
               <option value="{{book.name}}" ng-repeat="book in data.books">{{book.name}}</option>
 			</select>
          
