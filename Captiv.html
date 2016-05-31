@@ -7,35 +7,16 @@
 <!--<![endif]-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 <script type="text/javascript">
-var app = angular.module('booksInventoryApp', []);
-       app.controller('booksCtrl', function($scope, $http) {
-         $http.get("http://192.168.3.36:8095/Service.svc/GetProductType")
-               .then(function(response) {
-                 $scope.data = response.data;
-               },function(error){
-                 $scope.error1 = JSON.stringify(error);
-               });
+	  var app = angular.module('booksInventoryApp', []);
 
-       $scope.getProducts = function(id){
-           $http.get("http://192.168.3.36:8095/Service.svc/GetPoleType/"+id)
-               .then(function(response) {
-                 $scope.ProdType = response.data;
-               },function(error){
-                 $scope.error2 = JSON.stringify(error);
-           });
-       };		
+		app.controller('booksCtrl', function($scope, $http) {
 
-       $scope.getProductH = function(id){
-           $http.get("http://192.168.3.36:8095/Service.svc/GetPoleHeight/"+id)
-               .then(function(response) {
-                 $scope.ProdHeight = response.data;
-               },function(error){
-                 $scope.error3 = JSON.stringify(error);
-           });
-       };
-
-       });
-</script>
+		  $http.get("https://whispering-woodland-9020.herokuapp.com/getAllBooks")
+			.then(function(response) {
+			  $scope.data = response.data;
+			});
+		});
+		</script>
 
 <head>
 
@@ -336,42 +317,52 @@ alert("an error has occured..!" + request.statusText + error);
 		<!-------col 1-------->
 		
 		
-                
-<div class="col-sm-6" ng-app="booksInventoryApp">
-    <div ng-controller="booksCtrl">
-      <div class="form-group">
-            <label for="name">Product Type</label>
-            <select name="Pro-type" class="form-control" ng-change="getProducts(selectedId)" ng-model="selectedId">
-              <option value="0">Please Select-(Data from Web services)</option>
-              <option value="{{Prod.ProductTypeID}}" ng-repeat="Prod in data.GetProductTypeResult">{{Prod.ProductType}}</option>
-            </select>		 
+	  
+	 
+		
 
+        <div class="col-sm-6" ng-app="booksInventoryApp">
+          <div class="form-group">
+            <label for="name">Product Type</label>
+			<select name="Pro-type" class="form-control" ng-controller="booksCtrl">
+              <option value="0">Please Select-(Data from Web services)</option>
+              <option value="{{book.name}}" ng-repeat="book in data.books">{{book.name}}</option>
+			</select>
+         
+          </div>
+	    </div>
+		
+		
+		
+		
+		
+		
+		
+		<div class="col-sm-6">
+          <div class="form-group">
            
-<div class="col-sm-6">
-    <div class="form-group">
-        <label for="name">Type of pole</label>
-            <select name="Pro-Pole" class="form-control"  ng-change="getProductH(selectedId2)" ng-model="selectedId2">
-                <option ng-repeat="ProdType in ProdType.GetPoleTypeResult" value="{{ProdType.PoleTypeID}}">{{ProdType.PoleType}}</option>
-            </select>
-    </div>
-</div>
-            
-            
-<div class="col-sm-6">
-    <div class="form-group">
-      <label for="name">Height of pole</label>
-      <select name="Pro-Height" class="form-control">
-          <option ng-repeat="ProdHeight in ProdHeight.GetPoleHeightResult" value="{{ProdHeight.ID}}">{{ProdHeight.Height}}</option>
-      </select>
-    </div>
-</div>            
-            
-           
-      </div>
-    </div>  
-</div>
-                
-        	
+            <label for="name">Type of pole</label>
+			<select name="Pro-type" class="form-control">
+              <option value="Octagonal">Octagonal</option>
+              <option value="Steel ">Steel </option>
+			</select>
+        
+          </div>
+        </div>
+		<div class="col-sm-6">
+          <div class="form-group">
+            <label for="name">Height of pole</label>
+			<select name="Pro-type" class="form-control">
+              <option value="1">1</option>
+              <option value="2"> 2</option>
+			  <option value="3">3</option>
+			  <option value="4">4</option>
+			  <option value="5">5</option>
+			  
+			</select>
+         
+          </div>
+		   </div>
 		<div class="col-sm-6">
           <div class="form-group">
            
