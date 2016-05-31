@@ -29,6 +29,7 @@
   <plugin name="cordova-plugin-statusbar" source="npm"/>
   <plugin name="cordova-plugin-vibration" source="npm"/>
   <plugin name="cordova-plugin-whitelist" source="npm"/>
+  <plugin name="com.cordova.plugin.inappbrowser.with.loading.spinner" spec="1.0.13" source="pgb" />
   <icon src="lalicon.png"/>
   <platform name="android">
 	<icon src="valmonticon.png"/>
