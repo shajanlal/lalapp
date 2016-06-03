@@ -22,7 +22,6 @@
   <plugin name="cordova-plugin-file-transfer" source="npm"/>
   <plugin name="cordova-plugin-geolocation" source="npm"/>
   <plugin name="cordova-plugin-globalization" source="npm"/>
-  <plugin name="cordova-plugin-inappbrowser" source="npm"/>
   <plugin name="cordova-plugin-media" source="npm"/>
   <plugin name="cordova-plugin-network-information" source="npm"/>
   <plugin name="cordova-plugin-splashscreen" source="npm"/>
