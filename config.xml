@@ -30,8 +30,6 @@
   <plugin name="cordova-plugin-whitelist" source="npm"/>
   <plugin name="com.cordova.plugin.inappbrowser.with.loading.spinner" spec="1.0.13" source="pgb" />
   <plugin name="it.mobimentum.phonegapspinnerplugin" spec="1.1.0" source="pgb" />
-  <plugin name="Downloader" value="com.phonegap.plugins.downloader.Downloader"/>
-  <plugin name="PdfViewer" value="com.phonegap.plugins.pdfViewer.PdfViewer"/>
   <icon src="lalicon.png"/>
   <platform name="android">
 	<icon src="valmonticon.png"/>
