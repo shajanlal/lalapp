@@ -1,0 +1,388 @@
+<!doctype html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+<script type="text/javascript">
+var app = angular.module('booksInventoryApp', []);
+       app.controller('booksCtrl', function($scope, $http) {
+         $http.get("http://192.168.3.36:8095/Service.svc/GetProductType")
+               .then(function(response) {
+                 $scope.data = response.data;
+               },function(error){
+                 $scope.error1 = JSON.stringify(error);
+               });
+
+       $scope.getProducts = function(id){
+           $http.get("http://192.168.3.36:8095/Service.svc/GetPoleType/"+id)
+               .then(function(response) {
+                 $scope.ProdType = response.data;
+               },function(error){
+                 $scope.error2 = JSON.stringify(error);
+           });
+       };		
+
+       $scope.getProductH = function(id){
+           $http.get("http://192.168.3.36:8095/Service.svc/GetPoleHeight/"+id)
+               .then(function(response) {
+                 $scope.ProdHeight = response.data;
+               },function(error){
+                 $scope.error3 = JSON.stringify(error);
+           });
+       };
+
+       });
+</script>
+
+<head>
+
+
+
+<meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />-->
+
+<!--[if lt IE 9]> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+<title>Valmont</title>
+<meta name="description" content="">
+<meta name="author" content="WebThemez">
+<!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!--[if lte IE 8]>
+		<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+	<![endif]-->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
+<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/da-slider.css" />
+<link rel="stylesheet" href="css/styles.css" />
+<!-- Font Awesome -->
+<link href="css/font-awesome.min.css" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="css/index.css" />
+ 
+ <script >
+
+function initPage() {
+document.addEventListener("deviceready", HellowWorld, false);
+}
+
+function HellowWorld() {
+$.ajax({
+type: "POST",
+url: "http://myWebSite.com/ws.asmx/HelloWorld",
+data: "{}",
+crossDomain: true,
+contentType: "application/json; charset=utf-8",
+dataType: "json",
+cache: false,
+success: OnSuccess,
+error: OnError
+});
+}
+
+function OnSuccess(data, status) {
+$('#lblResult').html(data.d);
+}
+
+function OnError(request, status, error) {
+alert("an error has occured..!" + request.statusText + error);
+}
+
+</script>
+<style>
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
+.style2 {font-size: 10px}
+</style>
+
+<script type="text/javascript" src="cordova.js"></script>      
+    <script type="text/javascript">
+
+        function onLoad()
+        {
+              document.addEventListener("deviceready", onDeviceReady, true);
+        }
+
+        function exitFromApp()
+         {
+            navigator.app.exitApp();
+         }
+		 
+	function backKeyDown() 
+	{
+    	navigator.notification.confirm("Are you sure you want to exit?", onConfirm, "Please Confirm", "Yes,No"); 
+	}
+	function onConfirm(button) {
+   		 if(button==2)
+		 {//If User selected No, then we just do nothing
+			return;
+			}
+			else
+			{
+			navigator.app.exitApp();// Otherwise we quit the app.
+			}
+		}
+
+    </script>
+</head>
+
+<body onLoad="onLoad();">
+
+
+<header class="header  addBg" >
+  <div class="container">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a href="reports.html" class="navbar-brand scroll-top "><i class="fa fa-arrow-left fa-2x" style="color:#FFFFFF;"></i></a> </div>
+      <!--/.navbar-header-->
+      <div id="main-nav" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav" id="mainNav">
+          <li><a href="home.html" class="scroll-link">Home</a></li>
+          <li><a href="settings.html" class="scroll-link">Settings</a></li>
+          <li><a href="Captiv.html" class="scroll-link">Cost Computation </a></li>
+          <li  class="active"><a href="reports.html" class="scroll-link">Reports</a></li>
+          <li><a href="#" onClick="backKeyDown()" class="scroll-link">Exit</a></li>
+        </ul>
+      </div>
+      <!--/.navbar-collapse--> 
+    </nav>
+    <!--/.navbar--> 
+  </div>
+  <!--/.container--> 
+</header>
+<!--/.header-->
+<div id="#top"></div>
+<!--About--><!--Quote--><!--Skills--><!--Experience-->
+<!--Portfolio--><!--Contact -->
+<section id="contactUs" class="page-section secPad">
+  <div class="container">
+    <div class="row">
+      <div class="heading"> 
+        <!-- Heading -->
+         <h2>Report</h2>
+      </div>
+    </div>
+    <div class="row mrgn30">
+      <table width="100%" cellspacing="0">
+        <tr>
+          <td><table width="100%" border="0">
+              <tr>
+                <td width="67%"><p><img src="val.png" /></p></td>
+                <td width="33%"><h4>Quotation No: SH02889<br />
+                  REV: 0</h4></td>
+              </tr>
+              <tr>
+                <td>Quotation Date: 1-Jun-2016</td>
+                <td>&nbsp;</td>
+              </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" cellpadding="1" cellspacing="0" bgcolor="#CCCCCC" style="border:solid 1px #ccc;">
+              <tr>
+                <td width="67%" bgcolor="#FFFFFF"><table width="100%" cellpadding="0" cellspacing="5" >
+                    <tr>
+                      <td width="61%">Customer Details<br />
+                          <span class="style2"> Test quote</span></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>Dispatch Location<br />
+                          <span class="style2">EX-WORKS</span></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                    </tr>
+                </table></td>
+                <td width="33%" valign="top" bgcolor="#FFFFFF"><table width="100%" cellspacing="5">
+                    <tr>
+                      <td width="100%"><p>Remarks &nbsp;</p>
+                          <p>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                      <td>Mode of shipment: Road</td>
+                    </tr>
+                </table></td>
+              </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC">
+              <tr>
+                <td width="4%" bgcolor="#999999">SNO</td>
+                <td width="42%" bgcolor="#999999"> Details </td>
+                <td width="10%" bgcolor="#999999">IMAGE </td>
+                <td width="6%" bgcolor="#999999">UM </td>
+                <td width="7%" bgcolor="#999999">QUANTITY</td>
+                <td width="10%" bgcolor="#999999">UNIT PRICE</td>
+                <td width="9%" bgcolor="#999999">NET AMOUNT </td>
+                <td width="12%" bgcolor="#999999">EXCISE DUTY</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF">1</td>
+                <td bgcolor="#FFFFFF">Supply of 12 m height hot dip galvanized Static<br />
+                  poles. Major dimensions are as follows.<br />
+                  Top Dia: 70 mm<br />
+                  Bottom Dia: 130 mm<br />
+                  Sheet Thickness: 3 mm<br />
+                  Base Plate Size: 200X200X12 mm</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">EA </td>
+                <td bgcolor="#FFFFFF">1</td>
+                <td align="right" bgcolor="#FFFFFF">4018.52</td>
+                <td align="right" bgcolor="#FFFFFF">4018.52</td>
+                <td align="right" bgcolor="#FFFFFF">502.31</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF">2</td>
+                <td bgcolor="#FFFFFF">Supply of 1 m DA std pipe Ring type bkt</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">EA </td>
+                <td bgcolor="#FFFFFF">1</td>
+                <td align="right" bgcolor="#FFFFFF">33.33</td>
+                <td align="right" bgcolor="#FFFFFF">33.33</td>
+                <td align="right" bgcolor="#FFFFFF">4.16</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td align="right" bgcolor="#FFFFFF">&nbsp;</td>
+                <td align="right" bgcolor="#FFFFFF">4051.85 </td>
+                <td align="right" bgcolor="#FFFFFF">506.47</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+                <td align="right" bgcolor="#FFFFFF">Total</td>
+                <td align="right" bgcolor="#FFFFFF">4051.85 </td>
+                <td align="right" bgcolor="#FFFFFF">506.47</td>
+              </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="70%" valign="top"><p>We hope you will find the above offer as per your requirements. In case you require any clarifications, Please revert back to us.</p>
+                    <h2 style="padding-top: 3pt;padding-left: 17pt;text-align: left;">Terms And Conditions</h2>
+                  <ol>
+                      <li> Prices quoted are on Ex-works (Indapur, Maharashtra) basis unless freight is mentioned separately in quotation. </li>
+                    <li> Excise duty only applicable for material manufactured in our plant. </li>
+                    <li> Sales Tax, Entry Tax and octroi as applicable shall be extra. </li>
+                    <li> Payment: 25 % advance along with order.75 % before dispatch of material from our factory</li>
+                    <li> Delivery: We can supply the materials within 6-8 weeks from the date of order or date of receipt of approved drawings, whichever is later. We can workout the staggered quantity if the quantity is large. </li>
+                    <li> Validity of quotation is 30 days. </li>
+                    <li> Mast/Pole shall be as per Valmont technical data sheet or details mentioned in quotation. </li>
+                  </ol>
+                  <p>&nbsp;</p></td>
+                <td width="30%" valign="top"><table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC">
+                    <tr>
+                      <td valign="top" bgcolor="#FFFFFF"><table width="100%" border="0">
+                          <tr>
+                            <td width="60%" valign="top">Currency: Excise Duty <span class="s8">(f)</span>:</td>
+                            <td width="18%" valign="top">INR (f)</td>
+                            <td width="22%" align="right" valign="top">506</td>
+                          </tr>
+                          <tr>
+                            <td valign="top">Freight <span class="s8">(f)</span>:</td>
+                            <td valign="top">&nbsp;</td>
+                            <td align="right" valign="top">0</td>
+                          </tr>
+                          <tr>
+                            <td valign="top">Discount <span class="s8">(f)</span>:</td>
+                            <td valign="top">&nbsp;</td>
+                            <td align="right" valign="top">0</td>
+                          </tr>
+                          <tr>
+                            <td valign="top">Total <span class="s8">(f)</span>:</td>
+                            <td valign="top">&nbsp;</td>
+                            <td align="right" valign="top">4558</td>
+                          </tr>
+                        </table>
+                          <p>&nbsp;</p></td>
+                    </tr>
+                </table></td>
+              </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td><p>Expecting your valued order </p>
+              <p><strong>For Valmont Structures Pvt Ltd <br />
+                A 20, Indapur Ind Estate<br />
+                MIDC Indapur Indapur Taluka Pune, INDIA<br />
+                Website: <a href="http://www.valmont.com/valmont-india/" style="color: black; font-family:Calibri, sans-serif; font-style: normal; text-decoration: none; font-size: 11pt;" target="_blank">- </a>http://www.valmont.com/valmont-india<br />
+                Tel :- +91-20-30403830<br />
+                Fax :- +91-20-30403832</strong></p></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!--/.container--> 
+</section>
+
+<!--/.page-section-->
+<footer class="copyright">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="social pull-left"> </div>
+      </div>
+      
+    </div>
+    <!-- / .row --> 
+  </div>
+</footer>
+<a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a> 
+
+<!--[if lte IE 8]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]--> 
+<script src="js/modernizr-latest.js"></script> 
+<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script> 
+<script src="js/bootstrap.min.js" type="text/javascript"></script> 
+<script src="js/jquery.isotope.min.js" type="text/javascript"></script> 
+<script src="js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script> 
+<script src="js/jquery.nav.js" type="text/javascript"></script> 
+<script src="js/jquery.cslider.js" type="text/javascript"></script> 
+<script src="js/jquery.diagram.js"></script> 
+<script src="js/custom.js" type="text/javascript"></script> 
+<script src="js/owl-carousel/owl.carousel.js"></script>
+</body>
+</html>
