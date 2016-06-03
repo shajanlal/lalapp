@@ -271,7 +271,7 @@ alert("an error has occured..!" + request.statusText + error);
           <div class="form-group">
             <label for="name">Dispatch To City</label>
 			<select name="Pro-type" class="form-control">
-              <option value="INDAPUR">Dispatch To State</option>
+              <option value="INDAPUR">Dispatch To City</option>
 			</select>
          
           </div>
@@ -342,7 +342,7 @@ alert("an error has occured..!" + request.statusText + error);
       <div class="form-group">
             <label for="name">Product Type</label>
             <select name="Pro-type" class="form-control" ng-change="getProducts(selectedId)" ng-model="selectedId">
-              <option value="0">Please Select-(Data from Web services)</option>
+              <option value="0" selected="selected">Please Select-(Data from Web services)</option>
               <option value="{{Prod.ProductTypeID}}" ng-repeat="Prod in data.GetProductTypeResult">{{Prod.ProductType}}</option>
             </select>		 
 
